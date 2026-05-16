@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iqra — Brand Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <span class="loader__name">iqra.</span>
+    <div class="loader__bar"><span></span></div>
+  </div>
+
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <a href="#" class="header__logo">
+      <img src="logo.png" alt="Logo" class="logo-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-fallback">iqra.</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#about">— about</a>
+      <a href="#projects">— projects</a>
+      <a href="#contact">— contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__shapes" id="heroShapes" aria-hidden="true"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <span class="hero__word">Brand</span><br>
+        <span class="hero__word">Designer</span>
+      </h1>
+    </div>
+    <span class="hero__scroll">scroll</span>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2 class="section-title slide-title"><span>About Me</span></h2>
+    <div class="about__cards">
+
+      <div class="flip-card about-card--1" tabindex="0">
+        <div class="flip-card__inner">
+          <div class="flip-card__front"><span>My<br>Story</span></div>
+          <div class="flip-card__back">
+            <p>I never planned to be a designer. I just enjoyed making things look good — and one thing led to another.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card about-card--2" tabindex="0">
+        <div class="flip-card__inner">
+
+          <div class="flip-card__front"><span>Hi!<br>I'm<br>Iqra</span></div>
+          <div class="flip-card__back">
+            <p>Graphic Designer & Student. Fueled by chai, coffee & rainy days. Introvert who lets the design do the
+              talking.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card about-card--3" tabindex="0">
+        <div class="flip-card__inner">
+          <div class="flip-card__front"><span>What<br>I Offer</span></div>
+          <div class="flip-card__back">
+            <p>Brochures · Business Cards · Posters & Flyers · YouTube Thumbnails · Social Media Designs</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <h2 class="section-title slide-title"><span>Projects</span></h2>
+    <div class="projects__grid">
+
+      <div class="project-card" style="--ph:#B5C4C1">
+        <img src="images/korean-range.png" alt="korean range" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title">Original Korean Range</span>
+          <p class="overlay-tag">Poster Design</p>
+        </div>
+      </div>
+
+      <div class="project-card" style="--ph:#2C3E6B">
+        <img src="images/cafe-oh.png" alt="YouTube cafeoh" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title">Cafe Oh </span>
+          <p class="overlay-tag">Brand Design</p>
+        </div>
+      </div>
+
+      <div class="project-card" style="--ph:#C9702A">
+        <img src="images/japanese-cuisine.png" alt="Delicious" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title">Delicious</span>
+          <p class="overlay-tag">Editorial Poster Design</p>
+        </div>
+      </div>
+
+      <div class="project-card" style="--ph:#4A3728">
+        <img src="images/londe-purple.png" alt="londe" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title">La Londe Flower</span>
+          <p class="overlay-tag">Poster Design</p>
+        </div>
+      </div>
+
+      <div class="project-card" style="--ph:#3D2B1F">
+        <img src="images/skating-event.png" alt="skating" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title"> IceSkating Event</span>
+          <p class="overlay-tag">Event poster Design</p>
+        </div>
+      </div>
+
+      <div class="project-card" style="--ph:#1C2B3A">
+        <img src="images/londe-blue.png" alt="Londe" loading="lazy">
+        <div class="project-card__overlay">
+          <span class="overlay-title">La Londe Flower</span>
+          <p class="overlay-tag">Poster design</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="banner__inner">
+      <img src="images/banner.png" alt="Turning visions into brand reality" class="banner__img" loading="lazy">
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact__wrapper">
+      <div class="contact__left">
+        <h2 class="section-title contact__title slide-title"><span>Contact</span></h2>
+        <p class="contact__note r-fade">Messages sent over the weekend will be replied to on the next business day. I do
+          not respond to emails on weekends.</p>
+      </div>
+      <form class="contact__form r-fade" id="contactForm" style="--rfd:.15s">
+        <input type="text" name="name" placeholder="Name" required autocomplete="off">
+        <input type="email" name="email" placeholder="Email" required autocomplete="off">
+        <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
+        <button type="submit" class="btn-submit">SUBMIT</button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <a href="#" class="header__logo footer__logo">
+        <img src="logo.png" alt="Logo" class="logo-img"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback">iqra.</span>
+      </a>
+      <a href="#" class="footer__totop">go to top ↑</a>
+    </div>
+    <div class="footer__main">
+      <h2 class="footer__title">Brand<br>Designer</h2>
+      <nav class="footer__links">
+        <a href="#">— instagram</a>
+        <a href="#">— whatsapp</a>
+        <a href="#">— threads</a>
+      </nav>
+    </div>
+    <p class="footer__credit">Designed &amp; developed by Qurat Ul Ain</p>
+  </footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

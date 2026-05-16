@@ -1,0 +1,948 @@
+/* ============================================================
+   PORTFOLIO — Iqra Brand Designer
+   Put Pilowlava-Regular.otf inside /fonts/
+   ============================================================ */
+
+@font-face {
+  font-family: 'Pilowlava';
+  src: url('../fonts/Pilowlava-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --red: #C8302A;
+  --red-dk: #A32420;
+  --black: #111111;
+  --white: #FFFFFF;
+  --cream: #F5F0EB;
+  --grey: #777777;
+  --border: rgba(0, 0, 0, 0.10);
+
+  --font-d: 'Pilowlava', serif;
+  --font-b: 'DM Sans', sans-serif;
+
+  --hw: 4.5rem;
+  --mw: 1060px;
+  --r: 8px;
+  --g: 2rem;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-b);
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Prevent scroll while loading */
+body.is-loading {
+  overflow: hidden;
+}
+
+
+/* ── LOADER ─────────────────────────────────────────────────── */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: var(--red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: opacity 0.7s ease 0.1s, visibility 0.7s ease 0.1s;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader__name {
+  font-family: var(--font-d);
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: ld-name 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+}
+
+.loader__bar {
+  width: 120px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.loader__bar span {
+  display: block;
+  height: 100%;
+  background: var(--white);
+  width: 0%;
+  animation: ld-bar 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.4s;
+}
+
+@keyframes ld-name {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ld-bar {
+  to {
+    width: 100%;
+  }
+}
+
+
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--hw);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  color: var(--white);
+  transition: color 0.35s, background 0.35s, box-shadow 0.35s;
+}
+
+.header.solid {
+  color: var(--black);
+  background: var(--white);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 2rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-fallback {
+  display: none;
+  font-family: var(--font-d);
+  font-size: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.nav a {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  line-height: 1.65;
+  transition: opacity 0.2s;
+}
+
+.nav a:hover {
+  opacity: 0.5;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 201;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center;
+  color:#fff;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 198;
+  backdrop-filter: blur(2px);
+}
+
+.nav-overlay.active {
+  display: block;
+}
+
+
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem 2rem clamp(3.5rem, 9vh, 6rem);
+  overflow: hidden;
+}
+
+/* SVG shapes layer — parallax via JS */
+.hero__shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero__shapes svg {
+  position: absolute;
+}
+
+/* Shape animations */
+@keyframes sh-float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(10deg);
+  }
+}
+
+@keyframes sh-float-r {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(12px) rotate(-8deg);
+  }
+}
+
+@keyframes sh-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.50;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1.0;
+  }
+}
+
+.sh-s {
+  animation: sh-float var(--d, 9s) ease-in-out infinite;
+}
+
+.sh-r {
+  animation: sh-pulse var(--d, 12s) ease-in-out infinite;
+}
+
+.sh-l {
+  animation: sh-float-r var(--d, 11s) ease-in-out infinite;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Hero title — words enter from below */
+.hero__title {
+  font-family: var(--font-d);
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  letter-spacing: -0.01em;
+}
+
+.hero__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__word:nth-child(3) {
+  /* second word (after the <br>) */
+  transition-delay: 0.18s;
+}
+
+.hero__word.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: clamp(3.5rem, 9vh, 6rem);
+  right: 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  writing-mode: vertical-rl;
+  opacity: 0.6;
+  z-index: 1;
+  animation: fade-in 1s ease forwards 1.6s;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 0.6;
+  }
+}
+
+
+/* ── SECTION TITLE — slide-up reveal ───────────────────────── */
+.section-title {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+
+/* Wrapper clips the overflow so span slides up into view */
+.slide-title {
+  overflow: hidden;
+}
+
+.slide-title span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-title.in span {
+  transform: translateY(0);
+}
+
+
+/* ── ABOUT — staggered floating cards ──────────────────────── */
+.about {
+  padding: clamp(5rem, 9vw, 8rem) 2rem clamp(6rem, 11vw, 10rem);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.about__cards {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--g);
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  /* compensate for offset */
+}
+
+/* Perspective wrapper = the card element */
+.flip-card {
+  flex: 1;
+  perspective: 1200px;
+  aspect-ratio: 1;
+  /* individual offsets below */
+}
+
+/* Stagger positions — card 1: low, card 2: high + bigger, card 3: mid-low */
+.about-card--1 {
+  transform: translateY(48px);
+  animation: float-a 7s ease-in-out infinite;
+  margin-top: 3.5rem;
+}
+
+.about-card--2 {
+  flex: 1.18;
+  /* slightly wider */
+  transform: translateY(-24px);
+  margin-top: 3.5rem;
+  animation: float-b 8.5s ease-in-out infinite;
+}
+
+.about-card--3 {
+  transform: translateY(48px);
+  margin-top: 3.5rem;
+  animation: float-c 6.5s ease-in-out infinite;
+}
+
+@keyframes float-a {
+
+  0%,
+  100% {
+    transform: translateY(48px);
+  }
+
+  50% {
+    transform: translateY(34px);
+  }
+}
+
+@keyframes float-b {
+
+  0%,
+  100% {
+    transform: translateY(-24px);
+  }
+
+  50% {
+    transform: translateY(-38px);
+  }
+}
+
+@keyframes float-c {
+
+  0%,
+  100% {
+    transform: translateY(28px);
+  }
+
+  50% {
+    transform: translateY(16px);
+  }
+}
+
+/* Initial hidden state — JS adds .card-in */
+.flip-card {
+  opacity: 0;
+}
+
+.flip-card.card-in {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* Inner flip */
+.flip-card__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card:hover .flip-card__inner,
+.flip-card:focus-within .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card__front,
+.flip-card__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.flip-card__front {
+  background: var(--red);
+  color: var(--white);
+  border: 2px solid var(--red);
+}
+
+.flip-card__front span {
+  font-family: var(--font-d);
+  font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  line-height: 1;
+}
+
+.flip-card__back {
+  background: var(--white);
+  color: var(--black);
+  border:2px solid var(--black);
+  transform: rotateY(180deg);
+}
+
+.flip-card__back p {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+
+/* ── PROJECTS — staggered grid ──────────────────────────────── */
+.projects {
+  padding: clamp(4rem, 8vw, 7rem) 2rem clamp(5rem, 10vw, 9rem);
+  background: var(--cream);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--g);
+  row-gap: 0;
+  /* rows managed by margin-top */
+  max-width: var(--mw);
+  margin: 0 auto;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r);
+  aspect-ratio: 4 / 5;
+  background: var(--ph, #ccc);
+  margin-top: 0;
+  /* overridden per card below */
+
+  /* reveal state */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease var(--pd, 0s),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--pd, 0s);
+}
+
+.project-card.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+  "down-up-down / up-down-up" pattern
+  odd  = shifted down  → positive margin-top offset
+  even = shifted up    → stays at row start (no extra margin)
+
+  We add bottom-margin on the row wrapper instead via padding on section.
+  Within the grid, use margin-top on the downward-shifted cards.
+*/
+
+/* Row 1: down | up | down */
+.project-card:nth-child(1), .project-card:nth-child(4) {
+  margin-top: 3.5rem;
+  animation: float-a 7s ease-in-out infinite;
+}
+
+.project-card:nth-child(2), .project-card:nth-child(5) {
+  margin-top: 0;
+  animation: float-b 8.5s ease-in-out infinite;
+}
+
+.project-card:nth-child(3), .project-card:nth-child(6) {
+  margin-top: 3.5rem;
+  animation: float-b 6.5s ease-in-out infinite;
+}
+
+/* Row 2: up | down | up  (using margin-top relative to where row starts) */
+/* In CSS grid each row tracks are independent, so nth-child 4-6 margin-top
+   is relative to the grid row baseline, not previous row's bottom. 
+.project-card:nth-child(4) {
+  margin-top: 0;
+}
+
+.project-card:nth-child(5) {
+  margin-top: 3.5rem;
+}
+
+.project-card:nth-child(6) {
+  margin-top: 0;
+}
+
+*/
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.80);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.project-card:hover .project-card__overlay {
+  opacity: 1;
+}
+
+.project-card:hover img {
+  transform: scale(1.06);
+}
+
+.overlay-title {
+  font-family: var(--font-d);
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+.overlay-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+
+/* ── BANNER ─────────────────────────────────────────────────── */
+.banner {
+  overflow: hidden;
+  background: var(--white);
+}
+
+.banner__inner {
+  will-change: transform;
+  /* parallax target */
+}
+
+.banner__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+/* ── CONTACT ────────────────────────────────────────────────── */
+.contact {
+  padding: clamp(4rem, 8vw, 7rem) 2rem;
+  background: var(--white);
+}
+
+.contact__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.contact__title {
+  text-align: left;
+}
+
+.contact__note {
+  margin-top: 1rem;
+  font-size: 0.84rem;
+  color: var(--grey);
+  line-height: 1.8;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact__form input,
+.contact__form textarea {
+  font-family: var(--font-b);
+  font-size: 0.9rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  outline: none;
+  background: var(--white);
+  transition: border-color 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+  border-color: var(--red);
+}
+
+.contact__form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.btn-submit {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  padding: 1rem;
+  border-radius: var(--r);
+  transition: background 0.2s, transform 0.12s;
+}
+
+.btn-submit:hover {
+  background: var(--red-dk);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+
+/* ── r-fade helper ──────────────────────────────────────────── */
+.r-fade {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease var(--rfd, 0s),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--rfd, 0s);
+}
+
+.r-fade.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer {
+  background: var(--red);
+  color: var(--white);
+  padding: 2rem 2rem 1.5rem;
+}
+
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.footer__logo .logo-img,
+.footer__logo .logo-fallback {
+  filter: brightness(0) invert(1);
+}
+
+.footer__totop {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.footer__totop:hover {
+  opacity: 1;
+}
+
+.footer__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer__title {
+  font-family: var(--font-d);
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding-bottom: 0.4rem;
+}
+
+.footer__links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.footer__links a:hover {
+  opacity: 1;
+}
+
+.footer__credit {
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  opacity: 0.5;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .projects__grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap:50px;
+  }
+
+  .contact__wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+.project-card {
+  transform: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  flex: none;
+}
+  .contact__title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --hw: 3.8rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 220px;
+    background: var(--cream);
+    color: var(--black);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.4rem;
+    padding: 2rem;
+    z-index: 199;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav.open {
+    transform: translateX(0);
+  }
+
+  .nav a {
+    font-size: 1rem;
+    color: var(--black);
+  }
+
+  .hamburger.open span{
+    color:var(--black);
+  }
+  /* About cards: stack vertically, centered */
+  .about__cards {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    gap: 1rem;
+    padding-bottom: 0;
+  }
+
+  .flip-card {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .about-card--1,
+  .about-card--2,
+  .about-card--3 {
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    flex: none;
+  }
+
+  /* Project cards: single column, no stagger */
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .footer__main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__links {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .about__cards {
+    max-width: 240px;
+  }
+}
