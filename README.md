@@ -1,1 +1,1 @@
-# Portfolio — Iqra Brand Designer
+# Portfolio — Brand Designer
