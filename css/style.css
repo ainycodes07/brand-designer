@@ -504,7 +504,7 @@ body.is-loading {
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .flip-card__front {
@@ -527,11 +527,14 @@ body.is-loading {
 }
 
 .flip-card__back p {
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   line-height: 1.75;
   font-weight: 300;
 }
 
+.flip-card__back ul{
+  padding-left:5%;font-size: clamp(0.85rem, 1.2vw, 1rem);
+}
 
 /* ── PROJECTS — staggered grid ──────────────────────────────── */
 .projects {
@@ -541,9 +544,10 @@ body.is-loading {
 
 .projects__grid {
   display: grid;
+  align-items:start;
   grid-template-columns: repeat(3, 1fr);
   column-gap: var(--g);
-  row-gap: 0;
+  row-gap: var(--g);
   /* rows managed by margin-top */
   max-width: var(--mw);
   margin: 0 auto;
@@ -553,8 +557,7 @@ body.is-loading {
   position: relative;
   overflow: hidden;
   border-radius: var(--r);
-  aspect-ratio: 4 / 5;
-  background: var(--ph, #ccc);
+  background: transparent;
   margin-top: 0;
   /* overridden per card below */
 
@@ -580,24 +583,24 @@ body.is-loading {
 */
 
 /* Row 1: down | up | down */
-.project-card:nth-child(1), .project-card:nth-child(4) {
+.project-card:nth-child(1) {
   margin-top: 3.5rem;
   animation: float-a 7s ease-in-out infinite;
 }
 
-.project-card:nth-child(2), .project-card:nth-child(5) {
+.project-card:nth-child(2) {
   margin-top: 0;
   animation: float-b 8.5s ease-in-out infinite;
 }
 
-.project-card:nth-child(3), .project-card:nth-child(6) {
+.project-card:nth-child(3) {
   margin-top: 3.5rem;
   animation: float-b 6.5s ease-in-out infinite;
 }
 
 /* Row 2: up | down | up  (using margin-top relative to where row starts) */
 /* In CSS grid each row tracks are independent, so nth-child 4-6 margin-top
-   is relative to the grid row baseline, not previous row's bottom. 
+   is relative to the grid row baseline, not previous row's bottom. */
 .project-card:nth-child(4) {
   margin-top: 0;
 }
@@ -610,12 +613,12 @@ body.is-loading {
   margin-top: 0;
 }
 
-*/
 
 .project-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display:block;
+  object-fit: unset;
   transition: transform 0.55s ease;
 }
 
@@ -669,7 +672,7 @@ body.is-loading {
 
 .banner__img {
   width: 100%;
-  height: 100%;
+  max-height: 300px;
   display: block;
 }
 
@@ -910,7 +913,6 @@ body.is-loading {
 
   .flip-card {
     width: 100%;
-    aspect-ratio: 1;
   }
 
   .about-card--1,
